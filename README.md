@@ -14,7 +14,8 @@ or bun
 
 ```bash
 bun add byte-scanner
-`
+```
+
 ## Usage
 
 ```typescript
