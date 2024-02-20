@@ -23,7 +23,7 @@ import { ByteScanner } from 'byte-scanner';
 
 // Create a new instance of ByteScanner with a file path
 const filePath = './path/to/your/binary/file';
-const scanner = new ByteScanner({ filePath });
+const scanner = new ByteScanner(filePath);
 
 // Set pattern
 scanner.setPattern('fa??'); // you can use "??" as a wildcard, this byte can be anything
@@ -42,11 +42,11 @@ console.log(
 
 ## API
 
-### `ByteScanner(options: ByteScannerOptions)`
+### `ByteScanner(filePath: FilePath)`
 
 Creates a new instance of ByteScanner with the specified options.
 
-- `options`: An object containing the file path (`filePath`) where the scanning will be performed.
+- `options`: the file path option (`filePath`) is where the scanning will be performed.
 
 ### `setPattern(pattern: string): void`
 

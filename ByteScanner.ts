@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from "fs";
 
 type Byte = number;
 type BytePattern = Byte[];
@@ -36,8 +36,8 @@ class ByteScanner implements Scanner {
   }
 
   private parsePattern(pattern: PatternString): BytePattern {
-    return pattern.split(' ').map((byte) => {
-      if (byte === '??') {
+    return pattern.split(" ").map((byte) => {
+      if (byte === "??") {
         return -1;
       } else {
         return parseInt(byte, 16);

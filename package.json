@@ -1,6 +1,6 @@
 {
   "name": "byte-scanner",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "module": "ByteScanner.ts",
   "type": "module",
   "devDependencies": {
@@ -9,10 +9,5 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "keywords": {
-    "pattern",
-    "scanner",
-    "boyer moore",
-    "il2cpp"
-  }
+  "keywords": ["pattern", "scanner", "boyer moore", "il2cpp"]
 }
