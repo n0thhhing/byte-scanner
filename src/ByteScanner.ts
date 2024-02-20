@@ -5,13 +5,14 @@ type BytePattern = Byte[];
 type ByteIndex = number;
 type FilePath = string;
 type PatternString = string;
+type BufferSpec = FilePath | Buffer;
 
 interface LastOccurrenceMap {
-  [byte: Byte]: Byte;
+  [byte: number]: number;
 }
 
 interface ByteScannerOptions {
-  filePath: FilePath;
+  bufferSpec: FilePath;
 }
 
 interface ByteScannerResult {
@@ -25,14 +26,17 @@ interface Scanner {
 }
 
 class ByteScanner implements Scanner {
-  private pattern: BytePattern;
-  private filePath: FilePath;
+  private pattern: BytePattern = [];
   private fileBuffer: Buffer;
 
-  constructor(filePath: FilePath) {
-    this.filePath = filePath;
-    this.fileBuffer = fs.readFileSync(this.filePath);
-    this.pattern = [];
+  constructor(private bufferSpec: BufferSpec) {
+    this.fileBuffer = this.isBuffer(this.bufferSpec)
+      ? this.bufferSpec
+      : fs.readFileSync(this.bufferSpec);
+  }
+
+  private isBuffer(input: any): input is Buffer {
+    return Buffer.isBuffer(input);
   }
 
   private parsePattern(pattern: PatternString): BytePattern {
@@ -51,9 +55,9 @@ class ByteScanner implements Scanner {
     const bufferLength = buffer.length;
     const lastOccurrence: LastOccurrenceMap = {};
 
-    for (let i = 0; i < patternLength; i++) {
-      lastOccurrence[pattern[i]] = i;
-    }
+    pattern.forEach((byte, index) => {
+      lastOccurrence[byte] = index;
+    });
 
     const indexes: ByteIndex[] = [];
     let i = 0;
@@ -86,7 +90,12 @@ class ByteScanner implements Scanner {
   }
 }
 
+function hexStrToBuf(hexString: string): Buffer {
+  return Buffer.from(hexString.replace(/\s+/g, ""), "hex");
+}
+
 export {
+  hexStrToBuf,
   ByteScanner,
   ByteScannerOptions,
   BytePattern,

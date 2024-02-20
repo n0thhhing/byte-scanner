@@ -1,13 +1,25 @@
 {
   "name": "byte-scanner",
   "version": "0.0.3",
-  "module": "ByteScanner.ts",
+  "module": "build/ByteScanner.js",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "scripts": {
+    "build": "npm run build.ts && sed -i 's/var { default: fs} = (()=>({}));/import fs from \"fs\"/g' build/Byte*",
+    "format": "prettier -w * --ignore-unknown"
   },
-  "peerDependencies": {
+  "devDependencies": {
+    "@types/bun": "latest",
     "typescript": "^5.0.0"
   },
-  "keywords": ["pattern", "scanner", "boyer moore", "il2cpp"]
+  "homepage": "https://github.com/n0thhhing/judsn-updater#readme",
+  "keywords": [
+    "pattern",
+    "scanner",
+    "boyer moore",
+    "il2cpp",
+    "binary",
+    "buffer",
+    "hex",
+    "offset"
+  ]
 }
