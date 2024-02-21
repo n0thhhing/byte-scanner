@@ -1,6 +1,6 @@
 {
   "name": "byte-scanner",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "module": "build/ByteScanner.js",
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
     "@types/bun": "latest",
     "typescript": "^5.0.0"
   },
-  "homepage": "https://github.com/n0thhhing/judsn-updater#readme",
+  "homepage": "https://github.com/n0thhhing/byte-scanner#readme",
   "keywords": [
     "pattern",
     "scanner",
